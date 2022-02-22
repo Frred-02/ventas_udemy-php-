@@ -30,7 +30,14 @@
  <body>
     <?php
    
+
+/*una condicional */
+   
+  if(isset($_SESSION ["validarSesionBackend"]) && $_SESSION["validarSesionBackend"] === "ok"){
+    
+  
    include "modulos/menu.php";
+  
         
     echo '<div id="right-panel" class="right-panel">';
     /**iniciamos <div id="right-panel" class="right-panel (cabezera) */
@@ -49,7 +56,9 @@
   include "modulos/footer.php";
 
     echo "</div>";
-
+  }else{
+    include "modulos/login.php";
+  }
     ?>
 
      <!-- Scripts -->
