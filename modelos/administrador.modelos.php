@@ -2,23 +2,30 @@
 
 require_once "conexion.php";
 
-class ModeloAdministrador {
+class ModeloAdministrador
+{
+
+    /*=============================================
+    MOSTRAR ADMINISTRADORES
+    =============================================*/
 
     public static function mdlMostrarAdministrador($tabla, $item, $valor)
     {
-        if ($item != null){
-            $stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla Where $item = :item order by id Desc");
+        if ($item != null) {
 
-            $stmt->bindParam(":" .$item,$valor.PDO::PARAM_STR);
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
+
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();
 
+        } else {
 
-
-        }else{
-            $stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla order by id Desc");
-            $stmt=execute();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC");
+            $stmt->execute();
             return $stmt->fetchAll();
+
         }
+
     }
 }
